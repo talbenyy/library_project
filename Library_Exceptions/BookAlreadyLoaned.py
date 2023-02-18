@@ -1,0 +1,3 @@
+class BookAlreadyLoaned(Exception):
+    pass
+

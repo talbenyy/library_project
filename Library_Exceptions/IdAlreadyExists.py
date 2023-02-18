@@ -1,0 +1,3 @@
+class IdAlreadyExists(Exception):
+    pass
+
