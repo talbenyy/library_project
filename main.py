@@ -10,27 +10,43 @@ from Library_Exceptions.InvalidId import InvalidId
 
 
 def main():
-    library = Library.load_library('library1.pickle')
+    library = Library.load_library('library2.pickle')
     if library is None:
         library = Library()
+        print("new library file loaded")
 
     while True:
         print("-----------------------------------------")
         print("\n\nLibrary Menu:")
+        # V
         print("1. Add a new customer")
+        # V
         print("2. Add a new book")
+        # V
         print("3. Loan a book")
+        # V
         print("4. Return a book")
+        # V
         print("5. Display all books")
+        # V
         print("6. Display all customers")
+        # V
         print("7. Display all loans")
-        # display all late loans
+        # X
+        print("8. display all late loans")
+        # V
         print("9. Display all loans for specific customer")
+        # V
         print("10. Find books by name")
+        # V
         print("11. Find books by author")
+        # V
         print("12. Find customer by name")
+        # V
         print("13. Remove a book from library")
+        # V
         print("14. Remove a customer from library")
+        # V
         print("15. Quit")
         print("-----------------------------------------")
         print()
@@ -47,22 +63,22 @@ def main():
                 library.add_customer(customer_id, name, address, email, birthday)
 
             if choice == '2':
-                book_id = input("Enter book id: ")
+                book_id = int(input("Enter book id: "))
                 name = input("Enter book name: ")
                 author = input("Enter book author: ")
                 year = input("Enter book year of publish: ")
-                library.add_book(book_id, name, author, year)
+                book_type = input("Enter a book type (for loan time)")
+                library.add_book(book_id, name, author, year, book_type)
 
             elif choice == '3':
-                customer_id = input("Enter customer id: ")
-                book_id = input("Enter book id: ")
-                loan_date = input("Enter loan date (YYYY-MM-DD): ")
-                library.loan_book(customer_id, book_id, loan_date)
+                customer_id = int(input("Enter customer id: "))
+                book_id = int(input("Enter book id: "))
+                library.loan_book(customer_id, book_id)
 
             elif choice == '4':
-                book_id = input("Enter book id: ")
-                return_date = input("Enter return date (YYYY-MM-DD): ")
-                library.return_book(book_id, return_date)
+                book_id = int(input("Enter book id: "))
+                customer_id = int(input("Enter customer id: "))
+                library.return_book(customer_id, book_id)
 
             elif choice == '5':
                 books = library.display_all_books()
@@ -89,10 +105,15 @@ def main():
                     print(loans)
 
             elif choice == '8':
-                pass
+                loans = library.display_late_loans()
+                if loans is list:
+                    for loan in loans:
+                        print(loan)
+                else:
+                    print(loans)
 
             elif choice == '9':
-                customer_id = input("Enter customer id: ")
+                customer_id = int(input("Enter customer id: "))
                 loans = library.display_customer_loans(customer_id)
                 if loans is list:
                     for loan in loans:
@@ -120,14 +141,14 @@ def main():
 
             elif choice == '12':
                 name = input("Enter customer name: ")
-                library.find_customer_by_name(name)
+                print(library.find_customer_by_name(name))
 
             elif choice == '13':
-                book_id = input("Enter book id: ")
+                book_id = int(input("Enter book id: "))
                 library.remove_book(book_id)
 
             elif choice == '14':
-                customer_id = input("Enter customer id:")
+                customer_id = int(input("Enter customer id:"))
                 library.remove_customer(customer_id)
 
             elif choice == '15':
@@ -147,7 +168,7 @@ def main():
         except Exception as e:
             print("An Error Occurred", e)
         finally:
-            library.save_library('library1.pickle', library)
+            library.save_library('library2.pickle', library)
 
 
 if __name__ == '__main__':

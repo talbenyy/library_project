@@ -1,9 +1,20 @@
+from datetime import datetime, timedelta
+
+
 class Loan:
-    def __init__(self, customer_id, book_id, loan_date, return_date):
+    def __init__(self, customer_id, book_id, book_type):
         self.customer_id = customer_id
         self.book_id = book_id
-        self.loan_date = loan_date
-        self.return_date = return_date
+        self.loan_date = datetime.now()
+
+        if book_type == '1':
+            days = 10
+        if book_type == '2':
+            days = 5
+        if book_type == '3':
+            days = 2
+
+        self.return_date = self.loan_date + timedelta(days=days)
 
     def get_customer_id(self):
         return self.customer_id
@@ -26,5 +37,8 @@ class Loan:
     def get_return_date(self):
         return self.return_date
 
-    def set_return_date(self, return_date):
-        self.return_date = return_date
+    def __str__(self):
+        return f"{self.customer_id} - {self.book_id} loan date: {self.loan_date}, return date: {self.return_date})"
+
+    def __repr__(self):
+        return f"{self.customer_id} - {self.book_id} loan date: {self.loan_date}, return date: {self.return_date})"
