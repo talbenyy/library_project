@@ -98,7 +98,6 @@ def main():
                     print(loans)
 
             elif choice == 9:
-                print("\n Here's What I Found For You: \n ")
                 customer_id = valid_inputs.customer_id_input()
                 loans = library.display_customer_loans(customer_id)
                 if loans is list:

@@ -8,11 +8,11 @@ class Loan:
         self.loan_date = datetime.today()  # Loan time is current time :)
 
         days = None
-        if book_type == '1':
+        if book_type == 1:
             days = 10
-        if book_type == '2':
+        if book_type == 2:
             days = 5
-        if book_type == '3':
+        if book_type == 3:
             days = 2
 
         self.return_date = self.loan_date + timedelta(days=days)  # Return date will be according to book type.

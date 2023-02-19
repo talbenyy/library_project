@@ -15,7 +15,7 @@ def choice_input() -> int:
 
 def customer_id_input() -> int:
     while True:
-        customer_id = input(" Please Enter Your ID Number >> ")
+        customer_id = input(" Please Enter Your ID Number (9 digits) >> ")
         pattern = r'^\d{9}$'
         match = re.search(pattern, str(customer_id))
         if match:
@@ -36,14 +36,8 @@ def customer_name_input() -> str:
 
 
 def customer_address_input() -> str:
-    while True:
-        customer_address = input(" Please Enter Your Address >> ")
-        pattern = r'^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$'
-        match = re.search(pattern, str(customer_address))
-        if match:
-            return customer_address
-        print(" Please Try Again >> ")
-        continue
+    customer_address = input(" Please Enter Your Address >> ")
+    return customer_address
 
 
 def customer_email_input() -> str:
@@ -72,7 +66,7 @@ def customer_birthday_input() -> str:
 
 def book_id_input() -> int:
     while True:
-        book_id = input(" Please Enter Book ID Number >> ")
+        book_id = input(" Please Enter Book ID Number (9 digits) >> ")
         pattern = r'^\d{9}$'
         match = re.search(pattern, str(book_id))
         if match:
