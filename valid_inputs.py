@@ -84,7 +84,7 @@ def book_name_input() -> str:
 
 def book_author_input() -> str:
     while True:
-        book_author = input(" Please Enter Book Name >> ")
+        book_author = input(" Please Enter Book Author Name >> ")
         pattern = r'^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$'
         match = re.search(pattern, str(book_author))
         if match:
@@ -95,7 +95,7 @@ def book_author_input() -> str:
 
 def book_year_input() -> int:
     while True:
-        book_year = input(" Please Enter Year The Of Publish Birthday (YYYY) >> ")
+        book_year = input(" Please Enter Book's Year The Of Publish (YYYY) >> ")
         pattern = r'^\d{4}$'
         match = re.search(pattern, str(book_year))
         if match:
@@ -106,7 +106,7 @@ def book_year_input() -> int:
 
 def book_type_input() -> int:
     while True:
-        book_type = input(" Please Enter Book Type (for future return date)  >> ")
+        book_type = input(" Please Enter Book Type (for future return date) (1/2/3)  >> ")
         pattern = r'^\d{1}$'
         match = re.search(pattern, str(book_type))
         if match:

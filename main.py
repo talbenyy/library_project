@@ -14,42 +14,25 @@ def main():
         print("new library file loaded")
 
     while True:
-        print("-----------------------------------------")
-        print("\n\nLibrary Menu:")
-        # V
+        print("\n ----------------------------------------- \n")
+        print(" Library Menu: \n")
         print("1. Add a new customer")
-        # V
         print("2. Add a new book")
-        # V
         print("3. Loan a book")
-        # V
         print("4. Return a book")
-        # V
         print("5. Display all books")
-        # V
         print("6. Display all customers")
-        # V
         print("7. Display all loans")
-        # X
         print("8. display all late loans")
-        # V
         print("9. Display all loans for specific customer")
-        # V
         print("10. Find books by name")
-        # V
         print("11. Find books by author")
-        # V
         print("12. Find customer by name")
-        # V
         print("13. Remove a book from library")
-        # V
         print("14. Remove a customer from library")
-        # V
         print("15. Quit")
-        print("-----------------------------------------")
-        print()
-        choice = input("Enter your choice (1-14) >> ")
-        print()
+        print("\n ----------------------------------------- \n")
+        choice = input(" Let's Enter A Choice (1-14) >> \n")
 
         try:
             if choice == '1':
@@ -154,17 +137,17 @@ def main():
                 exit(0)
 
         except ValueError as e:
-            print(" * Error - Please Enter A Valid Value * ")
+            print("\n * Error - Please Enter A Valid Value * \n")
         except BookAlreadyLoaned as e:
-            print(" * Error - Book Chosen Is Already Loaned * ")
+            print("\n * Error - Book Chosen Is Already Loaned * \n")
         except EmptyError as e:
-            print(" * Error - This List Is Empty * ")
+            print("\n * Error - This List Is Empty * \n")
         except IdAlreadyExists as e:
-            print("* Error - Id Given Already Exists * ")
+            print("\n * Error - Id Given Already Exists * \n")
         except InvalidId as e:
-            print(" * Error - Please Insert A Valid ID Number * ")
+            print("\n * Error - Please Insert A Valid ID Number * \n")
         except Exception as e:
-            print("* Error - An Error Occurred. Here Are some Details About It >>  * ", e)
+            print("\n * Error - An Error Occurred. Here Are some Details About It >> * \n ", e)
         finally:
             library.save_library('library2.pickle', library)
 
