@@ -7,7 +7,7 @@ class Customer:
         self.name = name
         self.address = address
         self.email = email
-        self.birthday = birthday
+        self.birthday = datetime.strptime(birthday, '%Y-%m-%d')
 
     def get_id(self) -> int:
         return self.customer_id

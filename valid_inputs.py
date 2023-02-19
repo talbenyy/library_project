@@ -3,6 +3,16 @@ import re
 
 # ------------ input validations for Customer ---------------
 
+def choice_input() -> int:
+    while True:
+        choice = input(" Let's Enter A Choice (1-15) >> \n")
+        pattern = r'^[1-9]|1[0-5]$'
+        match = re.search(pattern, str(choice))
+        if match:
+            return int(choice)
+        print(" Please Try Again >> ")
+
+
 def customer_id_input() -> int:
     while True:
         customer_id = input(" Please Enter Your ID Number >> ")
@@ -28,7 +38,7 @@ def customer_name_input() -> str:
 def customer_address_input() -> str:
     while True:
         customer_address = input(" Please Enter Your Address >> ")
-        pattern = r'^\d+\s+([a-zA-Z]+\s?)+[a-zA-Z]{2,}$'
+        pattern = r'^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$'
         match = re.search(pattern, str(customer_address))
         if match:
             return customer_address
