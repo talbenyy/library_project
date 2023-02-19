@@ -1,6 +1,4 @@
-import json
-import pickle
-from datetime import datetime
+import valid_inputs
 
 from Library import Library
 from Library_Exceptions.BookAlreadyLoaned import BookAlreadyLoaned
@@ -55,29 +53,29 @@ def main():
 
         try:
             if choice == '1':
-                customer_id = int(input("Enter customer id: "))
-                name = input("Enter customer name: ")
-                address = input("Enter customer address: ")
-                email = input("Enter customer email: ")
-                birthday = input("Enter customer birthday (YYYY-MM-DD): ")
+                customer_id = valid_inputs.customer_id_input()
+                name = valid_inputs.customer_name_input()
+                address = valid_inputs.customer_address_input()
+                email = valid_inputs.customer_email_input()
+                birthday = valid_inputs.customer_birthday_input()
                 library.add_customer(customer_id, name, address, email, birthday)
 
             if choice == '2':
-                book_id = int(input("Enter book id: "))
-                name = input("Enter book name: ")
-                author = input("Enter book author: ")
-                year = input("Enter book year of publish: ")
-                book_type = input("Enter a book type (for loan time)")
+                book_id = valid_inputs.book_id_input()
+                name = valid_inputs.book_name_input()
+                author = valid_inputs.book_author_input()
+                year = valid_inputs.book_year_input()
+                book_type = valid_inputs.book_type_input()
                 library.add_book(book_id, name, author, year, book_type)
 
             elif choice == '3':
-                customer_id = int(input("Enter customer id: "))
-                book_id = int(input("Enter book id: "))
+                customer_id = valid_inputs.customer_id_input()
+                book_id = valid_inputs.book_id_input()
                 library.loan_book(customer_id, book_id)
 
             elif choice == '4':
-                book_id = int(input("Enter book id: "))
-                customer_id = int(input("Enter customer id: "))
+                book_id = valid_inputs.book_id_input()
+                customer_id = valid_inputs.customer_id_input()
                 library.return_book(customer_id, book_id)
 
             elif choice == '5':
@@ -113,7 +111,7 @@ def main():
                     print(loans)
 
             elif choice == '9':
-                customer_id = int(input("Enter customer id: "))
+                customer_id = valid_inputs.customer_id_input()
                 loans = library.display_customer_loans(customer_id)
                 if loans is list:
                     for loan in loans:
@@ -122,7 +120,7 @@ def main():
                     print(loans)
 
             elif choice == '10':
-                name = input("Enter book name: ")
+                name = valid_inputs.book_name_input()
                 books = library.find_books_by_name(name)
                 if books is list:
                     for book in books:
@@ -131,7 +129,7 @@ def main():
                     print(books)
 
             elif choice == '11':
-                author = input("Enter author name: ")
+                author = valid_inputs.book_author_input()
                 books = library.find_books_by_author(author)
                 if books is list:
                     for book in books:
@@ -140,15 +138,15 @@ def main():
                     print(books)
 
             elif choice == '12':
-                name = input("Enter customer name: ")
+                name = valid_inputs.customer_name_input()
                 print(library.find_customer_by_name(name))
 
             elif choice == '13':
-                book_id = int(input("Enter book id: "))
+                book_id = valid_inputs.book_id_input()
                 library.remove_book(book_id)
 
             elif choice == '14':
-                customer_id = int(input("Enter customer id:"))
+                customer_id = valid_inputs.customer_id_input()
                 library.remove_customer(customer_id)
 
             elif choice == '15':
@@ -156,17 +154,17 @@ def main():
                 exit(0)
 
         except ValueError as e:
-            print("Please Enter A Valid Value")
+            print(" * Error - Please Enter A Valid Value * ")
         except BookAlreadyLoaned as e:
-            print("Book Chosen Is Already Loaned")
+            print(" * Error - Book Chosen Is Already Loaned * ")
         except EmptyError as e:
-            print("This List Is Empty")
+            print(" * Error - This List Is Empty * ")
         except IdAlreadyExists as e:
-            print("Id Given Already Exists")
+            print("* Error - Id Given Already Exists * ")
         except InvalidId as e:
-            print("Please Insert A Valid ID Number")
+            print(" * Error - Please Insert A Valid ID Number * ")
         except Exception as e:
-            print("An Error Occurred", e)
+            print("* Error - An Error Occurred. Here Are some Details About It >>  * ", e)
         finally:
             library.save_library('library2.pickle', library)
 

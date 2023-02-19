@@ -1,8 +1,7 @@
 import pickle
+
 from datetime import datetime
-
 from Loan import Loan
-
 from Customer import Customer
 from Book import Book
 
